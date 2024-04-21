@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "15895d1d-6dbd-43db-bce5-a6cca238bb2e",
-		"name": "0.1 User",
+		"name": "User",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30574089",
 		"_collection_link": "https://blue-star-904829.postman.co/workspace/The-Mentalist~6061017f-b4a8-42b7-8c72-fa234aebc7f6/collection/30574089-15895d1d-6dbd-43db-bce5-a6cca238bb2e?action=share&source=collection_link&creator=30574089"
@@ -412,7 +412,7 @@
 							"response": []
 						},
 						{
-							"name": "Deletar usuario com sucesso Copy",
+							"name": "Deletar usuario com sucesso",
 							"event": [
 								{
 									"listen": "test",
@@ -3950,109 +3950,6 @@
 							"response": []
 						},
 						{
-							"name": "Editar cadastro- Senha atualizada com sucesso",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"senha atualizada com sucesso\", function () {\r",
-											"    pm.expect(JSON.parse(responseBody).msg).to.eql(\"Senha atualizada com sucesso!\");\r",
-											"});\r",
-											"\r",
-											"function gerarSenha() {\r",
-											"  const caracteres = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%\";\r",
-											"  const comprimentoMinimo = 6;\r",
-											"  const comprimentoMaximo = 12;\r",
-											"  \r",
-											"  let senhaArray = [];\r",
-											"\r",
-											"  // Garante pelo menos um caractere maiúsculo, minúsculo, número e especial\r",
-											"  senhaArray.push(caracteres[Math.floor(Math.random() * 26)]); // Caractere maiúsculo\r",
-											"  senhaArray.push(caracteres[26 + Math.floor(Math.random() * 26)]); // Caractere minúsculo\r",
-											"  senhaArray.push(caracteres[52 + Math.floor(Math.random() * 10)]); // Número\r",
-											"  senhaArray.push(caracteres[62 + Math.floor(Math.random() * 4)]); // Caractere especial\r",
-											"\r",
-											"  const comprimentoRestante = Math.max(comprimentoMinimo - senhaArray.length, comprimentoMaximo - senhaArray.length);\r",
-											"\r",
-											"  for (let i = 0; i < comprimentoRestante; i++) {\r",
-											"    senhaArray.push(caracteres[Math.floor(Math.random() * caracteres.length)]);\r",
-											"  }\r",
-											"\r",
-											"  return shuffleString(senhaArray.join(\"\"));\r",
-											"}\r",
-											"\r",
-											"function shuffleString(string) {\r",
-											"  return string.split(\"\").sort(() => Math.random() - 0.5).join(\"\");\r",
-											"}\r",
-											"\r",
-											"pm.environment.set(\"NewPassword\", gerarSenha());"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "apikey",
-									"apikey": [
-										{
-											"key": "value",
-											"value": "{{UserAdminToken}}",
-											"type": "string"
-										},
-										{
-											"key": "in",
-											"value": "query",
-											"type": "string"
-										},
-										{
-											"key": "key",
-											"value": "token",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"password\": \"{{NewPassword}}\",\r\n  \"confirmPassword\": \"{{NewPassword}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/user/password/{{IdUser}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"user",
-										"password",
-										"{{IdUser}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Editar cadastro - Senha em branco",
 							"event": [
 								{
@@ -6247,26 +6144,6 @@
 			]
 		}
 	],
-	"auth": {
-		"type": "apikey",
-		"apikey": [
-			{
-				"key": "key",
-				"value": "token",
-				"type": "string"
-			},
-			{
-				"key": "in",
-				"value": "query",
-				"type": "string"
-			},
-			{
-				"key": "value",
-				"value": "{{TokenAdmin}}",
-				"type": "string"
-			}
-		]
-	},
 	"event": [
 		{
 			"listen": "prerequest",
